@@ -48,3 +48,57 @@
 - Add a customer satisfaction survey at the end of the call.
 - Configure basic reports to monitor the performance of the contact center (e.g., call volume, average handling time, customer satisfaction, voicebot usage).
 - Set up agent performance metrics and real-time monitoring dashboards, styled to match the corporate design.
+
+---
+
+## Infrastructure Created
+
+### Amazon Connect Instance
+- **Alias**: `traveldreams-contact-center`
+- **Instance ID**: `<INSTANCE_ID>`
+- **Region**: `eu-central-1` (Frankfurt)
+- **Status**: ACTIVE
+- **Console URL**: https://traveldreams-contact-center.my.connect.aws
+- **ARN**: `arn:aws:connect:eu-central-1:<ACCOUNT_ID>:instance/<INSTANCE_ID>`
+
+### Service Queues (5 Queues)
+1. **TravelDreams-General-Queue**
+   - ID: `<QUEUE_ID_GENERAL>`
+   - Description: General customer service queue
+
+2. **TravelDreams-Vacation-Queue**
+   - ID: `<QUEUE_ID_VACATION>`
+   - Description: Queue for vacation bookings
+
+3. **TravelDreams-Business-Queue**
+   - ID: `<QUEUE_ID_BUSINESS>`
+   - Description: Queue for business travel
+
+4. **TravelDreams-CustomerService-Queue**
+   - ID: `<QUEUE_ID_CS>`
+   - Description: Queue for customer service
+
+5. **TravelDreams-VIP-Queue**
+   - ID: `<QUEUE_ID_VIP>`
+   - Description: Priority queue for VIP customers
+
+### Routing Profile
+- **Name**: TravelDreams-Agent-Profile
+- **ID**: `<ROUTING_PROFILE_ID>`
+- **Default Outbound Queue**: TravelDreams-General-Queue
+- **Media Concurrency**:
+  - Voice: 1 concurrent call
+  - Chat: 2 concurrent chats
+
+### Admin User
+- **Username**: `admin-traveldreams`
+- **User ID**: `<USER_ID>`
+- **Email**: admin@traveldreams.com
+- **Security Profile**: Admin (Full Access)
+- **Phone Type**: Soft Phone
+- **Status**: Active
+- **Password**: Set during creation (change on first login)
+
+### Hours of Operation
+- **Name**: Basic Hours
+- **ID**: `<HOURS_OF_OPERATION_ID>`
